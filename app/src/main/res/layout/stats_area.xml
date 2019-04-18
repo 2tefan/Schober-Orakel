@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:showIn="@layout/activity_main">
+
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="0dp"
+		android:layout_height="150dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="9dp"
+		android:layout_marginRight="9dp"
+		android:autoSizeTextType="uniform"
+		android:background="@drawable/swipe_bg"
+		android:gravity="center"
+		android:maxLines="1"
+		android:text="@string/infomation"
+		android:textSize="50sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:targetApi="o" />
+
+	<ScrollView
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginTop="8dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<android.support.constraint.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="32dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<TextView
+					android:id="@+id/textViewStatsNames"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:gravity="start"
+					android:text="@string/testing"
+					android:textAlignment="textStart"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintHorizontal_bias="0.0"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<TextView
+					android:id="@+id/textViewStatsCount"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:layout_marginEnd="8dp"
+					android:layout_marginRight="8dp"
+					android:gravity="end"
+					android:text="@string/testing"
+					android:textAlignment="textEnd"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+			</android.support.constraint.ConstraintLayout>
+
+			<Space
+				android:layout_width="10dp"
+				android:layout_height="10dp" />
+
+		</LinearLayout>
+	</ScrollView>
+
+</android.support.constraint.ConstraintLayout>

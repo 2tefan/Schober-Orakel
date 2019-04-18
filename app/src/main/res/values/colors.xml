@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="colorPrimarySchober">#FC8B23</color>
+	<color name="colorPrimaryDarkSchober">#D7263D</color>
+	<color name="colorAccentSchober">#FFF275</color>
+
+	<!--Background-->
+	<color name="bg_color1">#FC8B23</color>
+	<color name="bg_color2">#D7263D</color>
+	<color name="bg_color3">#FFF275</color>
+
+	<!--Buttons-->
+	<color name="btn_color1">#80ffffff</color>
+	<color name="btn_color2">#80ffffff</color>
+
+	<!--Buttons-->
+	<color name="swipe_color1">#2c000000</color>
+
+</resources>

@@ -1,0 +1,41 @@
+<resources>
+	<string name="app_name" translatable="false">Schober Orakel</string>
+
+	<string name="btn_orakel_start_name">Start thinking&#8230;</string>
+
+	<string-array name="schoberAnwsers">
+		<item>Yes</item>
+		<item>No</item>
+		<item>Properly yes</item>
+		<item>Properly no</item>
+		<item>Definitely yes</item>
+		<item>Definitely no</item>
+		<item>I think the answer is yes</item>
+		<item>I think the answer is no</item>
+	</string-array>
+
+	<string-array name="schoberOtherAnwers">
+		<item>Maybe</item>
+		<item>You know what to do</item>
+		<item>Are you serious?</item>
+		<item>WTF?</item>
+		<item>WTF? What are you questioning?</item>
+		<item>Get a life</item>
+		<item>Can you please repeat?</item>
+		<item>I didn\'t understand it, please repeat :)</item>
+		<item>This isn\'t a question!</item>
+		<item>I don\'t know :(</item>
+		<item>There is no answer for that question</item>
+		<item>Error 404 answer not found</item>
+		<item>Please rethink the question</item>
+	</string-array>
+
+	<!--Background-->
+	<integer name="duration">4500</integer>
+
+	<!--Background-->
+	<string name="infomation">Swipe up here to get back</string>
+
+	<!--Testing-->
+	<string name="testing" translatable="false">Test</string>
+</resources>
