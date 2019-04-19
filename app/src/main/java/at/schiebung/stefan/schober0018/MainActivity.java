@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,239 +18,239 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
 {
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-		Vars.answerCount = getResources().getStringArray(R.array.schoberAnwsers).length;
-		Vars.answerOtherCount = getResources().getStringArray(R.array.schoberOtherAnwers).length;
-		Vars.Werte();
-		Saves.loadSaves(this);
+        Vars.answerCount = getResources().getStringArray(R.array.schoberAnwsers).length;
+        Vars.answerOtherCount = getResources().getStringArray(R.array.schoberOtherAnwers).length;
+        Vars.Werte();
+        Saves.loadSaves(this);
 
-		animations();
+        animations();
 
-		closeStats(0);
-
-
-		this.findViewById(android.R.id.content)
-		    .setOnTouchListener(new OnSwipeTouchListener(getApplicationContext())
-		    {
-			    public void onSwipeTop()
-			    {
-				    openStats(1000);
-			    }
-			    public void onSwipeRight()
-			    {
-				    //Toast.makeText(getApplicationContext(), "right", Toast.LENGTH_SHORT).show();
-			    }
-			    public void onSwipeLeft()
-			    {
-				    //Toast.makeText(getApplicationContext(), "left", Toast.LENGTH_SHORT).show();
-			    }
-			    public void onSwipeBottom()
-			    {
-				    closeStats(1000);
-			    }
-
-		    });
-
-		findViewById(R.id.btnThink).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				Thinking();
-			}
-		});
-		setTextViewStats();
-	}
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-
-		Saves.saveSaves(this);
-	}
-
-	private void Thinking()
-	{
-		TextView TextViewResult = findViewById(R.id.textViewResult);
-		String   result;
-		int      newResult;
-		Random   rng            = new Random();
-		int      seriousAnswer  = rng.nextInt(11);
-		String[] answersS;
-		int      answerInt;
-
-		if (seriousAnswer <= 9)
-		{
-			answersS = getResources().getStringArray(R.array.schoberAnwsers);
-		}
-		else
-		{
-			answersS = getResources().getStringArray(R.array.schoberOtherAnwers);
-		}
-
-		do
-		{
-			answerInt = rng.nextInt(answersS.length);
-			newResult = answerInt;
-			result = answersS[newResult];
-		} while (newResult == Vars.oldResult);
+        closeStats(0);
 
 
-		Vars.oldResult = newResult;
+        this.findViewById(android.R.id.content)
+            .setOnTouchListener(new OnSwipeTouchListener(getApplicationContext())
+            {
+                public void onSwipeTop()
+                {
+                    openStats(1000);
+                }
+                public void onSwipeRight()
+                {
+                    //Toast.makeText(getApplicationContext(), "right", Toast.LENGTH_SHORT).show();
+                }
+                public void onSwipeLeft()
+                {
+                    //Toast.makeText(getApplicationContext(), "left", Toast.LENGTH_SHORT).show();
+                }
+                public void onSwipeBottom()
+                {
+                    closeStats(1000);
+                }
 
-		if (seriousAnswer <= 9)
-		{
-			Vars.statsAnswers[answerInt]++;
-		}
-		else
-		{
-			Vars.statsOtherAnswers[answerInt]++;
-		}
-		TextViewResult.setText(result);
-	}
+            });
 
-	private void animations()
-	{
-		ConstraintLayout  myLayout          = findViewById(R.id.myLayout);           //Hintergrund
-		AnimationDrawable animationDrawable = (AnimationDrawable) myLayout.getBackground();
-		animationDrawable.setEnterFadeDuration(getResources().getInteger(R.integer.duration));
-		animationDrawable.setExitFadeDuration(getResources().getInteger(R.integer.duration));
-		animationDrawable.start();
-	}
+        findViewById(R.id.btnThink).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Thinking();
+            }
+        });
+        setTextViewStats();
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
 
-	private void openStats(int duration)
-	{
-		animateStats(duration, false);
-	}
+        Saves.saveSaves(this);
+    }
 
-	private void closeStats(int duration)
-	{
-		animateStats(duration, true);
-	}
+    private void Thinking()
+    {
+        TextView TextViewResult = findViewById(R.id.textViewResult);
+        String   result;
+        int      newResult;
+        Random   rng            = new Random();
+        int      seriousAnswer  = rng.nextInt(100);
+        String[] answersS;
+        int      answerInt;
 
-	private void animateStats(int duration, boolean closing)
-	{
-		ConstraintLayout clLSA       = findViewById(R.id.includeStats);
-		ConstraintLayout clLMA       = findViewById(R.id.includeMain);
-		int[]            koordinaten = getScreenSize();
-		int              posLSA;
-		int              posLMA;
+        if (seriousAnswer <= 95)
+        {
+            answersS = getResources().getStringArray(R.array.schoberAnwsers);
+        }
+        else
+        {
+            answersS = getResources().getStringArray(R.array.schoberOtherAnwers);
+        }
 
-		if (closing)
-		{
-			posLSA = Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
-			posLMA = 0;
-		}
-		else
-		{
-			posLSA = 0;
-			posLMA = 0 - Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
-		}
+        do
+        {
+            answerInt = rng.nextInt(answersS.length);
+            newResult = answerInt;
+            result = answersS[newResult];
+        } while (newResult == Vars.oldResult);
 
-		animateOA(posLSA, duration, clLSA, closing);
-		animateOA(posLMA, duration, clLMA, closing);
-	}
 
-	private void animateOA(int pos, int duration, ConstraintLayout cl, boolean closing)
-	{
-		ObjectAnimator objAni = ObjectAnimator.ofFloat(cl, "translationY", pos);
-		objAni.setDuration(duration);
-		objAni.setInterpolator(new DecelerateInterpolator());
-		objAni.start();
+        Vars.oldResult = newResult;
 
-		if (!closing)
-		{
-			setTextViewStats();
-		}
-	}
+        if (seriousAnswer <= 95)
+        {
+            Vars.statsAnswers[answerInt]++;
+        }
+        else
+        {
+            Vars.statsOtherAnswers[answerInt]++;
+        }
+        TextViewResult.setText(result);
+    }
 
-	private int[] getScreenSize()
-	{
-		WindowManager  w       = this.getWindowManager();
-		Display        d       = w.getDefaultDisplay();
-		DisplayMetrics metrics = new DisplayMetrics();
-		d.getMetrics(metrics);
-		// since SDK_INT = 1;
-		int widthPixels  = metrics.widthPixels;
-		int heightPixels = metrics.heightPixels;
-		// includes window decorations (statusbar bar/menu bar)
-		if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
-		{
-			try
-			{
-				widthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
-				heightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		// includes window decorations (statusbar bar/menu bar)
-		if (Build.VERSION.SDK_INT >= 17)
-		{
-			try
-			{
-				Point realSize = new Point();
-				Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
-				widthPixels = realSize.x;
-				heightPixels = realSize.y;
-			}
-			catch (Exception ignored)
-			{
-			}
-		}
+    private void animations()
+    {
+        ConstraintLayout  myLayout          = findViewById(R.id.myLayout);           //Hintergrund
+        AnimationDrawable animationDrawable = (AnimationDrawable) myLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(getResources().getInteger(R.integer.duration));
+        animationDrawable.setExitFadeDuration(getResources().getInteger(R.integer.duration));
+        animationDrawable.start();
+    }
 
-		return new int[] {widthPixels, heightPixels};
-	}
+    private void openStats(int duration)
+    {
+        animateStats(duration, false);
+    }
 
-	private void setTextViewStats()
-	{
-		TextView statsName  = findViewById(R.id.textViewStatsNames);
-		TextView statsCount = findViewById(R.id.textViewStatsCount);
+    private void closeStats(int duration)
+    {
+        animateStats(duration, true);
+    }
 
-		String[] seriousAnswersS = getResources().getStringArray(R.array.schoberAnwsers);
-		String[] otherAnswersS   = getResources().getStringArray(R.array.schoberOtherAnwers);
+    private void animateStats(int duration, boolean closing)
+    {
+        ConstraintLayout clLSA       = findViewById(R.id.includeStats);
+        ConstraintLayout clLMA       = findViewById(R.id.includeMain);
+        int[]            koordinaten = getScreenSize();
+        int              posLSA;
+        int              posLMA;
 
-		StringBuilder names = makeStats(seriousAnswersS);
-		names.append("\n");
-		names.append(makeStats(otherAnswersS));
+        if (closing)
+        {
+            posLSA = Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
+            posLMA = 0;
+        }
+        else
+        {
+            posLSA = 0;
+            posLMA = 0 - Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
+        }
 
-		StringBuilder count = makeStats(Vars.statsAnswers);
-		count.append("\n");
-		count.append(makeStats(Vars.statsOtherAnswers));
+        animateOA(posLSA, duration, clLSA, closing);
+        animateOA(posLMA, duration, clLMA, closing);
+    }
 
-		statsName.setText(names.toString());
-		statsCount.setText(count.toString());
-	}
+    private void animateOA(int pos, int duration, ConstraintLayout cl, boolean closing)
+    {
+        ObjectAnimator objAni = ObjectAnimator.ofFloat(cl, "translationY", pos);
+        objAni.setDuration(duration);
+        objAni.setInterpolator(new DecelerateInterpolator());
+        objAni.start();
 
-	private static StringBuilder makeStats(int[] s)
-	{
-		StringBuilder stb = new StringBuilder();
-		for (int i = 0; i < s.length; i++)
-		{
-			stb.append(s[i]);
-			stb.append("\n");
-		}
+        if (!closing)
+        {
+            setTextViewStats();
+        }
+    }
 
-		return stb;
-	}
+    private int[] getScreenSize()
+    {
+        WindowManager  w       = this.getWindowManager();
+        Display        d       = w.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        d.getMetrics(metrics);
+        // since SDK_INT = 1;
+        int widthPixels  = metrics.widthPixels;
+        int heightPixels = metrics.heightPixels;
+        // includes window decorations (statusbar bar/menu bar)
+        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
+        {
+            try
+            {
+                widthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
+                heightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        // includes window decorations (statusbar bar/menu bar)
+        if (Build.VERSION.SDK_INT >= 17)
+        {
+            try
+            {
+                Point realSize = new Point();
+                Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
+                widthPixels = realSize.x;
+                heightPixels = realSize.y;
+            }
+            catch (Exception ignored)
+            {
+            }
+        }
 
-	private static StringBuilder makeStats(String[] s)
-	{
-		StringBuilder stb = new StringBuilder();
-		for (int i = 0; i < s.length; i++)
-		{
-			stb.append(s[i]);
-			stb.append("\n");
-		}
+        return new int[] {widthPixels, heightPixels};
+    }
 
-		return stb;
-	}
+    private void setTextViewStats()
+    {
+        TextView statsName  = findViewById(R.id.textViewStatsNames);
+        TextView statsCount = findViewById(R.id.textViewStatsCount);
+
+        String[] seriousAnswersS = getResources().getStringArray(R.array.schoberAnwsers);
+        String[] otherAnswersS   = getResources().getStringArray(R.array.schoberOtherAnwers);
+
+        StringBuilder names = makeStats(seriousAnswersS);
+        names.append("\n");
+        names.append(makeStats(otherAnswersS));
+
+        StringBuilder count = makeStats(Vars.statsAnswers);
+        count.append("\n");
+        count.append(makeStats(Vars.statsOtherAnswers));
+
+        statsName.setText(names.toString());
+        statsCount.setText(count.toString());
+    }
+
+    private static StringBuilder makeStats(int[] s)
+    {
+        StringBuilder stb = new StringBuilder();
+        for (int i = 0; i < s.length; i++)
+        {
+            stb.append(s[i]);
+            stb.append("\n");
+        }
+
+        return stb;
+    }
+
+    private static StringBuilder makeStats(String[] s)
+    {
+        StringBuilder stb = new StringBuilder();
+        for (int i = 0; i < s.length; i++)
+        {
+            stb.append(s[i]);
+            stb.append("\n");
+        }
+
+        return stb;
+    }
 
 }

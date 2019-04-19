@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="btn_orakel_start_name">Nachdenken…</string>
+	<string name="btn_orakel_start_name">Nachdenken&#8230;</string>
 
 	<string-array name="schoberAnwsers">
 		<item>Ja</item>

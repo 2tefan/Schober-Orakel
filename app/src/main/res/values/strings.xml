@@ -37,5 +37,5 @@
 	<string name="infomation">Swipe up here to get back</string>
 
 	<!--Testing-->
-	<string name="testing" translatable="false">Test</string>
+	<string name="placeHolderStats" translatable="false">placeHolderStats</string>
 </resources>
