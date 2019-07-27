@@ -27,7 +27,7 @@ class Saves
 
 			if (s2 != null)
 			{
-				int[] stats = StringToIntArray(s1);
+				int[] stats = StringToIntArray(s2);
 
 				System.arraycopy(stats, 0, Vars.statsOtherAnswers, 0, stats.length);
 			}
@@ -62,12 +62,12 @@ class Saves
 
 		for (int i = 0; i < Vars.statsAnswers.length; i++)
 		{
-			stb1.append(String.valueOf(Vars.statsAnswers[i] + ","));
+			stb1.append(Vars.statsAnswers[i]).append(",");
 		}
 
 		for (int i = 0; i < Vars.statsOtherAnswers.length; i++)
 		{
-			stb2.append(String.valueOf(Vars.statsOtherAnswers[i] + ","));
+			stb2.append(Vars.statsOtherAnswers[i]).append(",");
 		}
 
 		preferences.put(sf_statsAnswers, stb1.toString());
