@@ -5,16 +5,15 @@ import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Random;
 
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             posLMA = 0;
         } else {
             posLSA = 0;
-            posLMA = 0 - Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
+            posLMA = -Stuff.biggerNumber(koordinaten[0], koordinaten[1]);
         }
 
         animateOA(posLSA, duration, clLSA, closing);
@@ -164,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings({"ConstantConditions", "JavaReflectionMemberAccess"})
     private int[] getScreenSize() {
         WindowManager w = this.getWindowManager();
         Display d = w.getDefaultDisplay();

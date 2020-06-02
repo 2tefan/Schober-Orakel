@@ -141,49 +141,46 @@ class SecurePreferences
 
     public void put(String key, String value)
     {
-        if (value == null)
-        {
+        if (value == null) {
             preferences.edit().remove(toKey(key)).apply();
-        }
-        else
-        {
+        } else {
             putValue(toKey(key), value);
         }
     }
 
-    public boolean containsKey(String key)
-    {
-        return preferences.contains(toKey(key));
-    }
+// --Commented out by Inspection START (02/06/20 09:33):
+//    public boolean containsKey(String key)
+//    {
+//        return preferences.contains(toKey(key));
+//    }
+// --Commented out by Inspection STOP (02/06/20 09:33)
 
-    public void removeValue(String key)
-    {
-        preferences.edit().remove(toKey(key)).apply();
-    }
+// --Commented out by Inspection START (02/06/20 09:34):
+//    public void removeValue(String key)
+//    {
+//        preferences.edit().remove(toKey(key)).apply();
+//    }
+// --Commented out by Inspection STOP (02/06/20 09:34)
 
-    public String getString(String key) throws SecurePreferencesException
-    {
-        if (preferences.contains(toKey(key)))
-        {
+    public String getString(String key) throws SecurePreferencesException {
+        if (preferences.contains(toKey(key))) {
             String securedEncodedValue = preferences.getString(toKey(key), "");
             return decrypt(securedEncodedValue);
         }
         return null;
     }
 
-    public void clear()
-    {
-        preferences.edit().clear().apply();
-    }
+// --Commented out by Inspection START (02/06/20 09:32):
+//    public void clear()
+//    {
+//        preferences.edit().clear().apply();
+//    }
+// --Commented out by Inspection STOP (02/06/20 09:32)
 
-    private String toKey(String key)
-    {
-        if (encryptKeys)
-        {
+    private String toKey(String key) {
+        if (encryptKeys) {
             return encrypt(key, keyWriter);
-        }
-        else
-        {
+        } else {
             return key;
         }
     }
