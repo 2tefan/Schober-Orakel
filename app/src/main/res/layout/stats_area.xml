@@ -6,10 +6,17 @@
 	android:layout_height="match_parent"
 	tools:showIn="@layout/activity_main">
 
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/horizontalGuideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintGuide_percent="0.15" />
+
 	<TextView
 		android:id="@+id/textView"
 		android:layout_width="0dp"
-		android:layout_height="150dp"
+		android:layout_height="0dp"
 		android:layout_marginStart="8dp"
 		android:layout_marginLeft="8dp"
 		android:layout_marginTop="8dp"
@@ -21,6 +28,7 @@
 		android:maxLines="1"
 		android:text="@string/infomation"
 		android:textSize="50sp"
+		app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"

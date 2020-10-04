@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="btn_orakel_start_name">Nachdenken&#8230;</string>
+    <string name="btn_orakel_start_name">Nachdenken&#8230;</string>
 
-	<string-array name="schoberAnwsers">
-		<item>Ja</item>
-		<item>Nein</item>
-		<item>Wahrscheinlich</item>
-		<item>Wahrscheinlich nicht</item>
-		<item>Definitiv ja</item>
-		<item>Definitiv nein</item>
-		<item>Ich glaube die Antwort ist ja</item>
-		<item>Ich glaube die Antwort ist nein</item>
-	</string-array>
+    <string-array name="schoberAnswers">
+        <item>Ja</item>
+        <item>Nein</item>
+        <item>Wahrscheinlich</item>
+        <item>Wahrscheinlich nicht</item>
+        <item>Definitiv ja</item>
+        <item>Definitiv nein</item>
+        <item>Ich glaube die Antwort ist ja</item>
+        <item>Ich glaube die Antwort ist nein</item>
+    </string-array>
 
-	<string-array name="schoberOtherAnwers">
-		<item>Vielleicht</item>
-		<item>Du weißt was zu tun ist</item>
-		<item>Ernsthaft?!</item>
-		<item>WTF?</item>
-		<item>WTF? Was fragst du?</item>
-		<item>Get a life</item>
-		<item>Kannst du das bitte wiederholen?</item>
-		<item>Hab ich leider nicht verstanden? :(</item>
-		<item>Das ist keine Frage!</item>
-		<item>I weiß nicht :(</item>
+    <string-array name="schoberOtherAnswers">
+        <item>Vielleicht</item>
+        <item>Du weißt was zu tun ist</item>
+        <item>Ernsthaft?!</item>
+        <item>WTF?</item>
+        <item>WTF? Was fragst du?</item>
+        <item>Get a life</item>
+        <item>Kannst du das bitte wiederholen?</item>
+        <item>Hab ich leider nicht verstanden? :(</item>
+        <item>Das ist keine Frage!</item>
+        <item>I weiß nicht :(</item>
 		<item>Für das gibt es keine Antwort</item>
 		<item>Error 404 Antwort nicht vorhanden</item>
 		<item>Bitte überleg dir die Frage noch einmal</item>
