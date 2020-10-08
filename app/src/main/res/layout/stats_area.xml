@@ -18,10 +18,8 @@
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:layout_marginStart="8dp"
-		android:layout_marginLeft="8dp"
 		android:layout_marginTop="8dp"
 		android:layout_marginEnd="9dp"
-		android:layout_marginRight="9dp"
 		android:autoSizeTextType="uniform"
 		android:background="@drawable/swipe_bg"
 		android:gravity="center"
@@ -58,19 +56,18 @@
 				app:layout_constraintTop_toTopOf="parent">
 
 				<TextView
-                    android:id="@+id/textViewStatsNames"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="start"
-                    android:text="@string/placeHolderStats"
-                    android:textAlignment="textStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+					android:id="@+id/textViewStatsNames"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:layout_marginTop="8dp"
+					android:gravity="start"
+					android:text="@string/placeHolderStats"
+					android:textAlignment="textStart"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintHorizontal_bias="0.0"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
 
 				<TextView
 					android:id="@+id/textViewStatsCount"
@@ -78,7 +75,6 @@
 					android:layout_height="wrap_content"
 					android:layout_marginTop="8dp"
 					android:layout_marginEnd="8dp"
-					android:layout_marginRight="8dp"
 					android:gravity="end"
 					android:text="@string/placeHolderStats"
 					android:textAlignment="textEnd"

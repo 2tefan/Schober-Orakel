@@ -87,12 +87,7 @@ class SecurePreferences
 
             this.encryptKeys = encryptKeys;
         }
-        catch (GeneralSecurityException e)
-        {
-            throw new SecurePreferencesException(e);
-        }
-        catch (UnsupportedEncodingException e)
-        {
+        catch (GeneralSecurityException | UnsupportedEncodingException e) {
             throw new SecurePreferencesException(e);
         }
     }

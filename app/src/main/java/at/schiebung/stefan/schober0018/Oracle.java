@@ -9,21 +9,20 @@ import androidx.security.crypto.MasterKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
 import java.util.Random;
 
 
 public class Oracle {
 
-    private Context context;
+    private final Context context;
     private int lastAnswerIndex = -1;
 
     private int[] statsAnswers;
     private int[] statsOtherAnswers;
 
 
-    private int answerCount;
-    private int answerOtherCount;
+    private final int answerCount;
+    private final int answerOtherCount;
 
     public Oracle(Context context) {
         this.context = context;
@@ -33,17 +32,6 @@ public class Oracle {
 
         statsAnswers = new int[answerCount];
         statsOtherAnswers = new int[answerOtherCount];
-    }
-
-    private static int[] StringToIntArray(String s) {
-        String[] array = s.split(",");
-        int[] intArray = new int[array.length];
-
-        for (int i = 0; i < array.length; i++) {
-            intArray[i] = Integer.parseInt(array[i]);
-        }
-
-        return intArray;
     }
 
     public void generateNewAnswer(TextView TextViewResult) {
@@ -73,10 +61,26 @@ public class Oracle {
         TextViewResult.setText(answer);
     }
 
-    public void loadOracle(Context context) {
+    private static int[] stringToIntArray(String s) {
+        String[] array = s.split(",");
+        int[] intArray = new int[array.length];
 
         try {
+            for (int i = 1; i < array.length - 1; i++) {
+                intArray[i] = Integer.parseInt(array[i]);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return intArray;
+    }
+
+    public void loadOracle(Context context) {
+        try {
             MasterKey.Builder masterKeyBuilder = new MasterKey.Builder(context);
+            masterKeyBuilder.setKeyScheme(MasterKey.KeyScheme.AES256_GCM);
             MasterKey masterKey = masterKeyBuilder.build();
 
             SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(context, context.getResources().getString(R.string.pref_name), masterKey,
@@ -84,9 +88,13 @@ public class Oracle {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
 
-            this.setStatsAnswers(StringToIntArray(sharedPreferences.getString(context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(new int[this.getAnswerCount()]))));
-            this.setStatsOtherAnswers(StringToIntArray(sharedPreferences.getString(context.getResources().getString(R.string.pref_statsOtherAnswers), Arrays.toString(new int[this.getAnswerOtherCount()]))));
+            String statsAnswersS = sharedPreferences.getString(context.getResources().getString(R.string.pref_statsAnswers), null);
+            String statsOtherAnswersS = sharedPreferences.getString(context.getResources().getString(R.string.pref_statsOtherAnswers), null);
 
+            if (statsAnswersS != null && statsOtherAnswersS != null) {
+                this.setStatsAnswers(stringToIntArray(statsAnswersS));
+                this.setStatsOtherAnswers(stringToIntArray(statsOtherAnswersS));
+            }
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
@@ -95,6 +103,7 @@ public class Oracle {
     public void saveOracle(Context context) {
         try {
             MasterKey.Builder masterKeyBuilder = new MasterKey.Builder(context);
+            masterKeyBuilder.setKeyScheme(MasterKey.KeyScheme.AES256_GCM);
             MasterKey masterKey = masterKeyBuilder.build();
 
             SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(context, context.getResources().getString(R.string.pref_name), masterKey,
@@ -102,15 +111,25 @@ public class Oracle {
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(
-                    context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(this.getStatsAnswers()));
-            editor.putString(
-                    context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(this.getStatsOtherAnswers()));
+
+            editor.putString(context.getResources().getString(R.string.pref_statsAnswers), intArrayToString(this.getStatsAnswers()));
+            editor.putString(context.getResources().getString(R.string.pref_statsOtherAnswers), intArrayToString(this.getStatsOtherAnswers()));
 
             editor.apply();
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String intArrayToString(int[] array) {
+        StringBuilder stb = new StringBuilder();
+
+        for (int element : array) {
+            stb.append(element);
+            stb.append(",");
+        }
+
+        return stb.toString();
     }
 
     public int[] getStatsAnswers() {
@@ -127,10 +146,6 @@ public class Oracle {
 
     public void setStatsOtherAnswers(int[] statsOtherAnswers) {
         this.statsOtherAnswers = statsOtherAnswers;
-    }
-
-    public int getAnswerCount() {
-        return answerCount;
     }
 
     public int getAnswerOtherCount() {

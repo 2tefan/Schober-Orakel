@@ -5,7 +5,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
@@ -48,12 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        findViewById(R.id.btnThink).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                oracle.generateNewAnswer(findViewById(R.id.textViewResult));
-            }
-        });
+        findViewById(R.id.btnThink).setOnClickListener(v -> oracle.generateNewAnswer(findViewById(R.id.textViewResult)));
 
         setTextViewStats();
     }
@@ -132,28 +126,8 @@ public class MainActivity extends AppCompatActivity {
         Display d = w.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         d.getMetrics(metrics);
-        // since SDK_INT = 1;
         int widthPixels = metrics.widthPixels;
         int heightPixels = metrics.heightPixels;
-        // includes window decorations (statusbar bar/menu bar)
-//        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17) {
-//            try {
-//                widthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
-//                heightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        // includes window decorations (statusbar bar/menu bar)
-//        if (Build.VERSION.SDK_INT >= 17) {
-//            try {
-//                Point realSize = new Point();
-//                Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
-//                widthPixels = realSize.x;
-//                heightPixels = realSize.y;
-//            } catch (Exception ignored) {
-//            }
-//        }
 
         return new int[]{widthPixels, heightPixels};
     }
