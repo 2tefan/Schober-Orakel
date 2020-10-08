@@ -5,15 +5,12 @@ import android.content.SharedPreferences;
 import android.widget.TextView;
 
 import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKeys;
+import androidx.security.crypto.MasterKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 
 public class Oracle {
@@ -77,16 +74,15 @@ public class Oracle {
     }
 
     public void loadOracle(Context context) {
-        String masterKeyAlias = null;
+
         try {
-            masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                    context.getResources().getString(R.string.pref_name),
-                    masterKeyAlias,
-                    context,
+            MasterKey.Builder masterKeyBuilder = new MasterKey.Builder(context);
+            MasterKey masterKey = masterKeyBuilder.build();
+
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(context, context.getResources().getString(R.string.pref_name), masterKey,
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
+
 
             this.setStatsAnswers(StringToIntArray(sharedPreferences.getString(context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(new int[this.getAnswerCount()]))));
             this.setStatsOtherAnswers(StringToIntArray(sharedPreferences.getString(context.getResources().getString(R.string.pref_statsOtherAnswers), Arrays.toString(new int[this.getAnswerOtherCount()]))));
@@ -97,28 +93,19 @@ public class Oracle {
     }
 
     public void saveOracle(Context context) {
-
-        String masterKeyAlias = null;
         try {
-            masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(
-                    context.getResources().getString(R.string.pref_name),
-                    masterKeyAlias,
-                    context,
+            MasterKey.Builder masterKeyBuilder = new MasterKey.Builder(context);
+            MasterKey masterKey = masterKeyBuilder.build();
+
+            SharedPreferences sharedPreferences = EncryptedSharedPreferences.create(context, context.getResources().getString(R.string.pref_name), masterKey,
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            Set<String> temp = new HashSet<String>((Collection<? extends String>) Arrays.asList(this.getStatsAnswers()));
-
-            editor.putStringSet(context.getResources().getString(R.string.pref_statsAnswers), temp);
             editor.putString(
                     context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(this.getStatsAnswers()));
             editor.putString(
                     context.getResources().getString(R.string.pref_statsAnswers), Arrays.toString(this.getStatsOtherAnswers()));
-            editor.pu
 
             editor.apply();
         } catch (GeneralSecurityException | IOException e) {
