@@ -3,7 +3,7 @@
 
 	<string name="btn_orakel_start_name">Start thinking&#8230;</string>
 
-	<string-array name="schoberAnwsers">
+	<string-array name="schoberAnswers">
 		<item>Yes</item>
 		<item>No</item>
 		<item>Properly yes</item>
@@ -14,7 +14,7 @@
 		<item>I think the answer is no</item>
 	</string-array>
 
-	<string-array name="schoberOtherAnwers">
+	<string-array name="schoberOtherAnswers">
 		<item>Maybe</item>
 		<item>You know what to do</item>
 		<item>Are you serious?</item>
@@ -32,10 +32,13 @@
 
 	<!--Background-->
 	<integer name="duration">4500</integer>
-
-	<!--Background-->
 	<string name="infomation">Swipe up here to get back</string>
 
 	<!--Testing-->
 	<string name="placeHolderStats" translatable="false">placeHolderStats</string>
+
+	<!--Preferences-->
+	<string name="pref_name" translatable="false">schober-orakel-preferences</string>
+	<string name="pref_statsAnswers" translatable="false">150</string>
+	<string name="pref_statsOtherAnswers" translatable="false">149</string>
 </resources>
